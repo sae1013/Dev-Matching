@@ -2,6 +2,7 @@ import Breadcrumb from "./Breadcrumb.js"
 import Nodes from "./Nodes.js";
 import {fetchData} from '../api/request.js';
 import ImageView from "./ImageView.js";
+import LoadingView from "./LoadingView.js";
 
 function App($app) {
 
@@ -11,6 +12,7 @@ function App($app) {
     depth:[], // 현재 폴더의 계층구조
     showModal: false,
     modalImagePath:null,
+    isLoading:false,
     
   }
 
@@ -38,12 +40,17 @@ function App($app) {
       try{
         if (node.type === 'DIRECTORY') {// directory 인경우 파일로 접속
           //Breadcrumb를 업데이트 하고 fetch또한 새로
+          this.setState({
+            ...this.state,
+            isLoading:true
+          });
           const nextNodes = await fetchData(node.id) // 새로운 노드를 받아옴.
           this.setState({
             ...this.state,
             isRoot: nextNodes[0].parent ? false : true,
             depth:[...this.state.depth, node],  // 파일계층노드
             nodes: nextNodes, 
+            isLoading:false
           })
           
 
@@ -67,18 +74,28 @@ function App($app) {
         const prevNodeId = nextState.depth.length == 0 ? null : nextState.depth[nextState.depth.length-1].id;
 
         if(!prevNodeId){ // 이전 페이지가 root인경우
+          this.setState({
+            ...this.state,
+            isLoading:true
+          });
           const rootNodes = await fetchData();
           this.setState({
             ...nextState,
             isRoot:true,
-            nodes:rootNodes
-          })
+            nodes:rootNodes,
+            isLoading:false
+          });
         }else {
+          this.setState({
+            ...this.state,
+            isLoading:true
+          });
           const prevNodes = await fetchData(prevNodeId);
           this.setState({
             ...nextState,
             isRoot:false,
-            nodes:prevNodes
+            nodes:prevNodes,
+            isLoading:false
           })
         }
       }catch(err){
@@ -94,6 +111,11 @@ function App($app) {
     initialState: {modalImagePath:this.state.modalImagePath,showModal:this.state.showModal}
   });
 
+  const Loadingview = new LoadingView({
+    $app,
+    initialState:{isLoading:false}
+  });
+
   this.setState = (nextState) => {
     this.state = nextState // 상태값을 변화시킴
     breadcrumb.setState(this.state.depth); //컴포넌트업데이트
@@ -105,6 +127,9 @@ function App($app) {
       showModal: this.state.showModal,
       modalImagePath:this.state.modalImagePath
     });
+    Loadingview.setState({
+      isLoading: this.state.isLoading
+    })
 
     if(this.state.showModal){ // modal event
       window.addEventListener('keydown',keyDownEventListener);
@@ -115,11 +140,16 @@ function App($app) {
   
   const init = async() => {
     try {
+      this.setState({
+        ...this.state,
+        isLoading: true
+      })
       const rootNodes = await fetchData(); // 전체 결과가 처리되면 이자리 promise로 들어옴
       this.setState({
         ...this.state,
         isRoot:true, // 맨처음은 루트를 파싱
-        nodes:rootNodes
+        nodes:rootNodes,
+        isLoading:false
       })
     } catch(e){
       // fetchData 수행중 에러 발생, promise에 error가 박혔을 때

@@ -50,8 +50,8 @@ function Nodes({$app,initialState,onClick,onBackClick}) {
 
       })
     } 
-    else{  //data 가 없을 때 (로딩중 으로 그냥 처리함)
-      nodeView = `<p>로딩중...</p>`
+    else{  //data 가 없을 때 
+      nodeView = `<p>데이터가 없습니다.</p>`
       this.$target.innerHTML = nodeView
     } 
 
