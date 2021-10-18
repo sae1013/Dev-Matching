@@ -24,7 +24,15 @@ function App($app) {
       })
     }
   }
-
+  const ModalCloseListener = (e) => {
+    if(e.target.classList.contains('Modal')){
+      this.setState({
+        ...this.state,
+        showModal:false
+      })
+    }
+    
+  }
   const breadcrumb = new Breadcrumb({
     $app,
     initialState: this.state.depth
@@ -102,7 +110,6 @@ function App($app) {
 
       }
 
-
     }
   });
   
@@ -133,8 +140,10 @@ function App($app) {
 
     if(this.state.showModal){ // modal event
       window.addEventListener('keydown',keyDownEventListener);
+      window.addEventListener('click',ModalCloseListener);
     }else {
       window.removeEventListener('keydown',keyDownEventListener);
+      window.removeEventListener('click',ModalCloseListener);
     }
   }
   
