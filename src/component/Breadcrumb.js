@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Breadcrumb($app,initialState) {
-  this.state = initialState;
+  this.state = initialState; // depth
 
   this.$target = document.createElement('nav');
   this.$target.className = 'Breadcrumb';
@@ -17,6 +17,8 @@ function Breadcrumb($app,initialState) {
       this.state.map((node,index)=>`<div class="nav-item" date-index="${index}">${node.name}</div>`).join('')
     }`      
   }
+  
+  this.render(); // 생성하자마자 렌더링.
 }
 
 export default Breadcrumb
