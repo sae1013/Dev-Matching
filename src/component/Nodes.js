@@ -1,8 +1,9 @@
 
 // 생성된 DOM 을 어디에 append 할지 $app파라미터로 받기.
 
-function Nodes({$app,initialState}) {
+function Nodes({$app,initialState,onClick}) {
   this.state = initialState // node 배열이 필요함.
+  this.onClick = onClick
 
   this.$target = document.createElement('ul'); // 어디에 렌더링할지
   $app.appendChild(this.$target);
