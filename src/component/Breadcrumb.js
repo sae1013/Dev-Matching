@@ -13,7 +13,7 @@ function Breadcrumb({$app,initialState}) {
 
   this.render = () => {
     this.$target.innerHTML = `<div class="nav-item">root</div>${
-      this.state.map((node,index)=>`<div class="nav-item" date-index="${index}">${node.name}</div>`).join('')
+      this.state.map((node,index)=>`<div class="nav-item" id="${index}">${node.name}</div>`).join('')
     }`      
   }
   
