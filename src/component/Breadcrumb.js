@@ -1,6 +1,5 @@
-import React from 'react'
 
-function Breadcrumb($app,initialState) {
+function Breadcrumb({$app,initialState}) {
   this.state = initialState; // depth
 
   this.$target = document.createElement('nav');
