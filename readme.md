@@ -47,29 +47,31 @@
 
 - App 컴포넌트 
 
-![스크린샷 2021-11-21 오후 11.29.18](/Users/minwoo/Desktop/스크린샷 2021-11-21 오후 11.29.18.png)
+<img width="845" alt="스크린샷 2021-11-21 오후 11 29 18" src="https://user-images.githubusercontent.com/63229394/142766751-1a18ceb2-edbb-4d0f-8db2-a2af005a5936.png">
 
 root 폴더에서는 뒤로가기 버튼이 없습니다.
 
 
 
 - 폴더 탐색
+<img width="842" alt="스크린샷 2021-11-21 오후 11 34 12" src="https://user-images.githubusercontent.com/63229394/142766759-52e86161-a338-4ccc-824b-459b3f7ad76c.png">
 
-![스크린샷 2021-11-21 오후 11.34.12](/Users/minwoo/Desktop/스크린샷 2021-11-21 오후 11.34.12.png)
 
-![스크린샷 2021-11-21 오후 11.29.34](/Users/minwoo/Desktop/스크린샷 2021-11-21 오후 11.29.34.png)
+<img width="874" alt="스크린샷 2021-11-21 오후 11 29 34" src="https://user-images.githubusercontent.com/63229394/142766774-2310425e-5906-449e-b30f-a8312ffee0d2.png">
+
 
 
 
 - 깊은 노드 탐색 
 
-![스크린샷 2021-11-21 오후 11.30.35](/Users/minwoo/Desktop/스크린샷 2021-11-21 오후 11.30.35.png)
+<img width="829" alt="스크린샷 2021-11-21 오후 11 30 35" src="https://user-images.githubusercontent.com/63229394/142766956-8242c5ae-f431-4b21-a873-7a3c61bb6b5e.png">
 
 
 
 - 사진 모달창 띄우기
 
-  ![스크린샷 2021-11-21 오후 11.29.43](/Users/minwoo/Desktop/스크린샷 2021-11-21 오후 11.29.43.png)
+<img width="829" alt="스크린샷 2021-11-21 오후 11 29 43" src="https://user-images.githubusercontent.com/63229394/142766791-5680fde8-0992-41cc-befd-60264f574b66.png">
+
 
 
 
@@ -93,8 +95,8 @@ root 폴더에서는 뒤로가기 버튼이 없습니다.
 
 ### API 처리구현
 
--  API 호출 중 에러가 발생했을 때의 처리 
-  - 오류가 발생한 경우를 체크
+-  API 호출상태에 따른 상태분기
+  - 로딩중, 에러에 대한 분기&처리
 
 - async, await 문을 사용
 
